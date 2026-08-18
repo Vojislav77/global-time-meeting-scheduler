@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Global Time & Meeting Scheduler</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <style>
+        :root { --bg: #f5f7fa; --card: #ffffff; --text: #1e2d3d; --text-light: #5f7a95; --border: #e1e8f0; --accent: #2b59c3; --header-bg: linear-gradient(135deg, #1e3a5f 0%, #2b59c3 100%); --nav-bg: #162d4a; --footer-bg: #0f1f33; --radius: 10px; --transition: 0.2s ease; }
+        .dark { --bg: #0f1724; --card: #1a2738; --text: #e8edf3; --text-light: #8fa4bd; --border: #2a3a50; --accent: #4a9eff; --header-bg: linear-gradient(135deg, #0a1628 0%, #1a2738 100%); --nav-bg: #0a1628; --footer-bg: #070e18; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg); min-height: 100vh; transition: background var(--transition), color var(--transition); }
+        .header { background: var(--header-bg); color: #fff; text-align: center; padding: 36px 20px 28px; position: relative; }
+        .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+        .header p { opacity: 0.85; font-size: 14px; }
+        .header-btn { position: absolute; top: 16px; right: 20px; padding: 6px 14px; border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; background: rgba(255,255,255,0.1); color: #fff; font-size: 13px; cursor: pointer; font-family: inherit; transition: all var(--transition); }
+        .header-btn:hover { background: rgba(255,255,255,0.25); }
+        .nav { background: var(--nav-bg); padding: 0 20px; display: flex; justify-content: center; flex-wrap: wrap; }
+        .nav a { color: rgba(255,255,255,0.75); text-decoration: none; padding: 12px 16px; font-size: 14px; font-weight: 500; transition: color var(--transition); }
+        .nav a:hover { color: #fff; }
+        .main { max-width: 800px; margin: 0 auto; padding: 32px 20px 48px; }
+        .page-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+        .page-subtitle { font-size: 14px; color: var(--text-light); margin-bottom: 28px; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .card h2 { font-size: 18px; font-weight: 600; margin: 24px 0 10px; }
+        .card h2:first-child { margin-top: 0; }
+        .card p, .card li { font-size: 14px; color: var(--text-light); margin-bottom: 10px; }
+        .card ul { padding-left: 20px; }
+        .card a { color: var(--accent); text-decoration: none; }
+        .card a:hover { text-decoration: underline; }
+        .updated { font-size: 13px; color: var(--text-light); font-style: italic; margin-bottom: 20px; }
+        .footer { background: var(--footer-bg); color: rgba(255,255,255,0.5); text-align: center; padding: 20px; font-size: 13px; }
+        .footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        @media (max-width: 600px) { .main { padding: 24px 16px; } .page-title { font-size: 22px; } .card { padding: 20px; } }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="logo.png" alt="Logo" style="width:48px; height:48px; margin-bottom:8px; border-radius:12px;">
+        <h1>🔒 Privacy Policy</h1>
+        <p>Please read these terms carefully before using the service.</p>
+        <button id="themeToggle" class="header-btn">🌙 Theme</button>
+   </header>
+    <nav class="nav">
+        <a href="index.html">Home</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="mailto:mail@mail.com?subject=Feedback">✉️ Report Issue</a>
+    </nav>
+    <div class="main">
+        <div class="card">
+            <p class="updated">Last Updated: April 17, 2026</p>
+            <h2>1. No Server-Side Data Collection</h2>
+            <p><strong>Global Time & Meeting Scheduler operates entirely in your browser.</strong> We do not use servers, databases, or analytics trackers. No personal data, IP addresses, or usage metrics are collected, stored, or transmitted to third parties.</p>
+            <h2>2. Local Storage Usage</h2>
+            <p>To improve your experience, we use your browser's <code>localStorage</code> to save:</p>
+            <ul>
+                <li>Theme preference (Light/Dark mode)</li>
+                <li>Selected cities & URL parameters</li>
+                <li>Notes tab content</li>
+                <li>Affiliate click tracking data (stored locally only)</li>
+            </ul>
+            <p>This data remains strictly on your device. Clearing your browser data will permanently remove it.</p>
+            <h2>3. Third-Party Services</h2>
+            <ul>
+                <li><strong>QR Code Generation:</strong> Uses qrserver.com API. Only the URL you are currently viewing is sent to generate the image. No tracking cookies are involved.</li>
+                <li><strong>Calendar Integrations:</strong> Google, Outlook, and Apple/iCal links open in new tabs on their official domains. Their respective privacy policies apply once you leave our site.</li>
+            </ul>
+            <h2>4. Children's Privacy</h2>
+            <p>This Service is not directed to children under 13. We do not knowingly collect personal information from minors. All data handling occurs locally on the user's device.</p>
+            <h2>5. Data Security</h2>
+            <p>Since no data is transmitted to our servers, there is no risk of server breaches or data leaks. Your notes and preferences are as secure as your device and browser settings.</p>
+            <h2>6. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy periodically. Changes will be reflected on this page with an updated revision date.</p>
+            <h2>7. Contact & Feedback</h2>
+            <p>For privacy-related inquiries or to report issues, contact us at <a href="mailto:vmail@mail.com">mail@mail.com</a>.</p>
+        </div>
+    </div>
+    <footer class="footer">© 2026 Global Time Tracker. <a href="index.html">Home</a> | <a href="terms.html">Terms</a> | <a href="mailto:mail@mail.com?subject=Feedback">✉️ Report Issue</a></footer>
+    <script>
+        function updateFavicon(isDark) { const p=isDark?'#4a9eff':'#2b59c3',a=isDark?'#e8edf3':'#ffffff',b=isDark?'#0f1724':'#ffffff'; document.getElementById('favicon').href=`data:image/svg+xml;charset=utf-8,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='15' fill='${b}'/><circle cx='16' cy='16' r='14' fill='${p}'/><path d='M2 16h28M16 2v28' stroke='${a}' stroke-width='2' fill='none'/><ellipse cx='16' cy='16' rx='8' ry='14' stroke='${a}' stroke-width='1.5' fill='none'/></svg>`)}`; }
+        const themeToggle=document.getElementById('themeToggle');
+        function loadTheme(){const s=localStorage.getItem('theme')||'light';document.body.classList.toggle('dark',s==='dark');themeToggle.textContent=s==='dark'?'☀️ Theme':'🌙 Theme';updateFavicon(s==='dark');}
+        themeToggle.addEventListener('click',()=>{const d=document.body.classList.toggle('dark');localStorage.setItem('theme',d?'dark':'light');themeToggle.textContent=d?'☀️ Theme':'🌙 Theme';updateFavicon(d);});
+        loadTheme();
+    </script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Time & Meeting Scheduler</title>
+    <meta name="description" content="Free, privacy-first world clock and meeting scheduler. Find the best meeting times across time zones with real-time clocks for 200+ cities, business hour overlap calculator, and calendar integration.">
+    <meta property="og:title" content="Global Time & Meeting Scheduler">
+    <meta property="og:description" content="Real-time world clocks & business hour overlap calculator for 200+ cities. Find the perfect meeting time across time zones.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="logo.png">
+    <meta property="og:url" content="https://vojislav77.github.io/global-time-meeting-scheduler/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Global Time & Meeting Scheduler">
+    <meta name="twitter:description" content="Real-time world clocks & business hour overlap calculator for 200+ cities.">
+    <meta name="twitter:image" content="logo.png">
+    <link rel="icon" type="image/png" href="logo.png">
+    <meta name="theme-color" content="#2b59c3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Time Scheduler">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-actions">
+            <button id="themeToggle" class="header-btn" aria-label="Toggle dark mode">🌙 Theme</button>
+            <button id="shareBtn" class="header-btn" aria-label="Share this page">📤 Share</button>
+            <button onclick="window.print()" class="header-btn" aria-label="Print this page">🖨️ Print</button>
+            <button id="timeFormatToggle" class="header-btn" aria-label="Toggle 12/24 hour format">🕐 12h</button>
+            <button id="supportBtn" class="header-btn" aria-label="Support this project">☕ Support</button>
+        </div>
+
+        <img src="logo.png" alt="Global Time & Meeting Scheduler logo" style="width:48px; height:48px; margin-bottom:8px; border-radius:12px;">
+        <h1>Global Time & Meeting Scheduler</h1>
+        <p>Real-time clocks & business hour overlap calculator</p>
+        <div class="live-badge" aria-label="Live updates active"><span class="live-dot" aria-hidden="true"></span> LIVE UPDATES</div>
+    </header>
+
+    <nav class="nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="#scheduler">Scheduler</a>
+        <a href="#notes">Notes</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="mailto:vojislavkorac@gmail.com?subject=Feedback">✉️ Report Issue</a>
+    </nav>
+
+    <div class="main">
+        <section class="section">
+            <div class="section-header">
+                <h2>Current World Times</h2>
+                <p>Click below to expand the hub list and select cities to display.</p>
+            </div>
+            <div class="card" style="padding: 16px;">
+                <button id="toggleCities" class="toggle-btn" aria-expanded="false" aria-controls="citySelector">
+                    <span>🌍 Manage Cities (300+ available)</span>
+                    <span class="arrow" aria-hidden="true">▼</span>
+                </button>
+                <div id="citySelector" class="collapsible" role="region" aria-label="City selection">
+                    <div class="collapsible-inner">
+                        <input type="text" id="searchCheckboxes" class="input" placeholder="Search cities..." aria-label="Search cities">
+                        <div style="display:flex;gap:8px;margin-top:10px;">
+                            <button class="btn small" id="selectAllBtn" aria-label="Select all cities">Select All</button>
+                            <button class="btn small" id="deselectAllBtn" aria-label="Deselect all cities">Clear All</button>
+                        </div>
+                        <div class="checkbox-grid" id="checkboxGrid" role="group" aria-label="Available cities"></div>
+                        <div class="count" id="selectionCount" aria-live="polite">0 selected</div>
+                    </div>
+                </div>
+            </div>
+            <div class="clock-grid" id="clockGrid" aria-label="World clocks"></div>
+        </section>
+
+        <section id="scheduler" class="section">
+            <div class="card">
+                <div class="section-header">
+                    <h2>📅 Meeting Overlap Calculator</h2>
+                    <p id="schedulerSubtitle">Find the best window for 9 AM - 5 PM business hours</p>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="cityA">Participant A</label>
+                        <select id="cityA" class="select"><option value="">Select City...</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cityB">Participant B</label>
+                        <select id="cityB" class="select"><option value="">Select City...</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="meetingDuration">Duration</label>
+                        <select id="meetingDuration" class="select">
+                            <option value="15">15 min</option><option value="30">30 min</option><option value="45">45 min</option>
+                            <option value="60" selected>60 min</option><option value="90">90 min</option><option value="120">120 min</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="recurrence">Recurrence</label>
+                        <select id="recurrence" class="select">
+                            <option value="NONE">One-time</option><option value="DAILY">Daily</option><option value="WEEKLY">Weekly</option>
+                            <option value="BIWEEKLY">Bi-weekly</option><option value="MONTHLY">Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn primary" id="calcBtn" style="width:100%;" aria-label="Calculate meeting overlap">Calculate</button>
+                <div class="result" id="resultBox" role="status" aria-live="polite">
+                    <div class="result-title" id="resultTitle">✅ Overlap Found</div>
+                    <div class="result-text" id="resultDesc"></div>
+                    <div class="timeline" id="timeline" role="img" aria-label="24-hour overlap timeline"></div>
+                    <div class="timeline-labels" id="timelineLabels"><span>12 AM</span><span>6 AM</span><span>12 PM</span><span>6 PM</span><span>12 AM</span></div>
+                    <div class="cal-grid" id="calendarLinks"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="notes" class="section">
+            <div class="section-header">
+                <h2>📝 Quick Notes</h2>
+                <p>Jot down meeting times, time zone conversions, or travel reminders. Auto-saved locally.</p>
+            </div>
+            <div class="card">
+                <div class="tabs" id="tabsHeader" role="tablist" aria-label="Note tabs"></div>
+                <div class="notes-toolbar" role="toolbar" aria-label="Formatting options">
+                    <button class="tool-btn" onclick="formatText('bold')" aria-label="Bold"><b>B</b></button>
+                    <button class="tool-btn" onclick="formatText('italic')" aria-label="Italic"><i>I</i></button>
+                    <button class="tool-btn" onclick="formatText('underline')" aria-label="Underline"><u>U</u></button>
+                    <button class="tool-btn" onclick="formatText('insertUnorderedList')" aria-label="Bullet list">• List</button>
+                    <button class="tool-btn" onclick="formatText('insertOrderedList')" aria-label="Numbered list">1. List</button>
+                    <button class="tool-btn" onclick="formatText('removeFormat')" aria-label="Clear formatting">Clear</button>
+                    <button class="tool-btn" style="margin-left:auto;" onclick="exportNotesTxt()" aria-label="Export notes as text file">📥 .txt</button>
+                </div>
+                <div id="notesArea" class="notes-area" contenteditable="true" spellcheck="false" role="textbox" aria-label="Notes editor" aria-multiline="true"></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;">
+                    <span id="saveStatus" style="font-size:12px;color:var(--text-light);" aria-live="polite">✅ Ready to save</span>
+                    <button class="btn small" onclick="clearCurrentNote()" aria-label="Clear current note tab">🗑️ Clear Tab</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2>✈️ Quick Travel & Meeting Tips</h2>
+            </div>
+            <div class="card">
+                <ul class="tips-list">
+                    <li><strong>Best US/EU overlap:</strong> 8:00-10:00 EST (13:00-15:00 GMT)</li>
+                    <li><strong>Asia-Pacific:</strong> Late evening US times usually align with early morning APAC times.</li>
+                    <li><strong>DST Awareness:</strong> Not all countries observe Daylight Saving Time. This tool auto-adjusts using live timezone data.</li>
+                    <li><strong>Weekend scheduling:</strong> Avoid Friday 15:00+ local time for cross-continental meetings.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        &copy; 2026 Global Time Tracker. <a href="terms.html">Terms</a> | <a href="privacy.html">Privacy</a> | <a href="mailto:vojislavkorac@gmail.com?subject=Feedback">✉️ Report Issue</a>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <div class="modal-overlay" id="supportModal" role="dialog" aria-labelledby="supportModalTitle" aria-modal="true">
+        <div class="modal">
+            <h3 id="supportModalTitle">☕ Support This Project</h3>
+            <p>Free, private, and runs entirely in your browser. If it saves you time, consider supporting!</p>
+            <div class="support-links">
+                <a href="https://ko-fi.com/yourusername" target="_blank" rel="noopener" class="support-link">☕ Ko-fi</a>
+                <a href="https://www.buymeacoffee.com/yourusername" target="_blank" rel="noopener" class="support-link">🧋 Buy Me a Coffee</a>
+                <a href="https://github.com/sponsors/yourusername" target="_blank" rel="noopener" class="support-link">💻 GitHub Sponsors</a>
+            </div>
+            <button class="btn" onclick="closeSupport()" aria-label="Close support dialog">Close</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="qrModal" role="dialog" aria-labelledby="qrModalTitle" aria-modal="true">
+        <div class="modal">
+            <h3 id="qrModalTitle">📱 Scan to Share</h3>
+            <img id="qrImage" alt="QR Code" class="modal-img" style="display:none;">
+            <p style="font-size:12px;color:var(--text-light);" id="qrStatus">Scan to open this dashboard</p>
+            <button class="btn" onclick="closeQR()" aria-label="Close QR code dialog">Close</button>
+        </div>
+    </div>
+
+    <script src="cities.js"></script>
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(reg => console.log('PWA Service Worker registered'))
+                    .catch(err => console.log('SW registration failed:', err));
+            });
+        }
+    </script>
+</body>
+</html>

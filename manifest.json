@@ -1,0 +1,14 @@
+{
+  "name": "Global Time & Meeting Scheduler",
+  "short_name": "Time Scheduler",
+  "description": "Real-time world clocks & business hour overlap calculator",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#2b59c3",
+  "orientation": "any",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
