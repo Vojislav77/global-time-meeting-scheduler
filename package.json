@@ -1,0 +1,40 @@
+{
+  "name": "global-time-meeting-scheduler",
+  "version": "1.0.0",
+  "description": "Real-time world clocks & business hour overlap calculator",
+  "main": "electron-main.js",
+  "desktopName": "global-time-meeting-scheduler",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --linux AppImage"
+  },
+  "build": {
+    "appId": "com.globaltime.scheduler",
+    "productName": "Global Time and Meeting Scheduler",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron-main.js",
+      "index.html",
+      "styles.css",
+      "app.js",
+      "cities.js",
+      "logo.png",
+      "icons/**/*",
+      "privacy.html",
+      "terms.html",
+      "service-worker.js"
+    ],
+    "linux": {
+      "target": "AppImage",
+      "icon": "logo.png",
+      "category": "Utility",
+      "syncDesktopName": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^26.0.0"
+  }
+}
